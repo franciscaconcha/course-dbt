@@ -17,7 +17,7 @@ WITH users_source AS (
         , email
         , phone_number
         , created_at AS created_at_utc
-        , updates_at AS updated_at_utc
+        , updated_at AS updated_at_utc
         , address_id AS address_guid
     FROM users_source
 )
