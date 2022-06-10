@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: sources
+    schema: public
+    database: dbt
+    tables:
+      - name: users
+        loaded_at_field: created_at
+        description: "User information. Primary key: user_id"
+      - name: addresses
+        description: "Address of each user. Primary key: address_id"
+      - name: orders
+        loaded_at_field: created_at
+        description: "Order information. Primary key: order_id"
+      - name: products
+        description: "Product information. Primary key: product_id"
+      - name: order_items
+        description: "Items in each order. Primary key: order_id"
+      - name: events
+        loaded_at_field: created_at
+        description: "Information on events. Primary key: event_id"
+      - name: promos
+        description: "Promotions information. Primary key: promo_id"
