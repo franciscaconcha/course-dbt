@@ -7,18 +7,18 @@ sources:
     tables:
       - name: users
         loaded_at_field: created_at
-        description: "User information. Primary key: user_id"
+        description: "User information. Primary key: user_guid"
       - name: addresses
-        description: "Address of each user. Primary key: address_id"
+        description: "Address of each user. Primary key: address_guid"
       - name: orders
         loaded_at_field: created_at
-        description: "Order information. Primary key: order_id"
+        description: "Order information. Primary key: order_guid"
       - name: products
-        description: "Product information. Primary key: product_id"
+        description: "Product information. Primary key: product_guid"
       - name: order_items
-        description: "Items in each order. Primary key: order_id"
+        description: "Items in each order. Primary key: order_guid"
       - name: events
         loaded_at_field: created_at
-        description: "Information on events. Primary key: event_id"
+        description: "Information on events. Primary key: event_guid"
       - name: promos
-        description: "Promotions information. Primary key: promo_id"
+        description: "Promotions information. Primary key: promo_guid"
