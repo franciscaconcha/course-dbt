@@ -23,7 +23,7 @@ WITH orders_source AS (
         , shipping_service
         , estimated_delivery_at AS estimated_delivery_at_uct
         , delivered_at AS delivered_at_utc
-        , status
+        , status AS order_status
     FROM orders_source
 )
 
