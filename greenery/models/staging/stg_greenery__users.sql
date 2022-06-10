@@ -18,7 +18,7 @@ WITH users_source AS (
         , phone_number
         , created_at_utc
         , updated_at_utc
-        , address_id
+        , address_id AS address_guid
     FROM users_source
 )
 

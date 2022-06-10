@@ -1,0 +1,139 @@
+version: 2
+
+models:
+  - name: stg_greenery__addresses
+    description: "User addresses information"
+    columns:
+      - name: address_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: address
+        description: "Street address"
+      - name: zipcode
+        description: "Address zip code"
+      - name: state
+        description: "Address state"
+      - name: country
+        description: "Address country"
+
+  - name: stg_greenery__events
+    description: "Information on events"
+    columns:
+      - name: event_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: session_guid
+        description: "Id for the session where the event was generated"
+      - name: user_guid
+        description: "Id of the user that generated the event"
+      - name: page_url
+        description: "URL of the page where the event was generated"
+      - name: created_at_utc
+        description: "Timestamp when the event was created"
+      - name: event_type
+        description: "Type of event"
+      - name: order_guid
+        description: "Id of the order related to the event"
+      - name: product_guid
+        description: "Id of the product related to the event"
+
+  - name: stg_greenery__order_items
+    description: "Information on items within an order"
+    columns:
+      - name: order_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: product_guid
+        description: "Id of the product"
+      - name: quantity
+        description: "Amount of products in the order"
+
+  - name: stg_greenery__orders
+    description: "Information on orders"
+    columns:
+      - name: order_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: user_guid
+        description: "Id of the user that generated the order"
+      - name: promo_guid
+        description: "Id of the promotion used in the order"
+      - name: address_guid
+        description: "Id of the address related to the order"
+      - name: created_at_utc
+        description: "Timestamp for the order"
+      - name: order_cost_usd
+        description: "Cost of the order"
+      - name: shipping_cost_usd
+        description: "Shipping cost of the order"
+      - name: order_total_usd
+        description: "Total cost of the order"
+      - name: tracking_id
+        description: "Tracking id for the order shipment"
+      - name: shipping_service
+        description: "Shipping service used for the order"
+      - name: estimated_delivery_at_uct
+        description: "Estimated delivery time of the order"
+      - name: delivered_at_utc
+        description: "Time at which the order was delivered"
+      - name: order_status
+        description: "Status of the order"
+
+  - name: stg_greenery__products
+    description: "Information on products"
+    columns:
+      - name: product_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Name of the product"
+      - name: product_price_usd
+        description: "Price of the product"
+      - name: product_inventory
+        description: "Inventory information of the product"
+
+  - name: stg_greenery__promos
+    description: "Information on promotions"
+    columns:
+      - name: promo_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: promo_discount
+        description: "Discount applied by the promotion"
+      - name: promo_status
+        description: "Status of the promotion"
+
+  - name: stg_greenery__users
+    description: "Information on users"
+    columns:
+      - name: user_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "First name of the user"
+      - name: last_name
+        description: "Last name of the user"
+      - name: email
+        description: "Email address of the user"
+      - name: phone_number
+        description: "Phone number of the user"
+      - name: created_at_utc
+        description: "Sign up timestamp for the user"
+      - name: updated_at_utc
+        description: "Timestamp when user info was updated"
+      - name: address_guid
+        description: "Id of the address of the user"
