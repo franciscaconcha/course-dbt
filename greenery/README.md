@@ -68,6 +68,7 @@ ORDER BY 1 ASC
 
 Result:
 | is_repeat_user | avg(order_length) |
+| --- | --- |
 | false | 4 days 03:16:21.818182 |
 | true | 3 days 20:56:49.187279 |
 
