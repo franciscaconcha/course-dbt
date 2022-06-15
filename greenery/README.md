@@ -66,6 +66,12 @@ GROUP BY 1
 ORDER BY 1 ASC
  ```
 
+Result:
+| is_repeat_user | avg(order_length) |
+| false | 4 days 03:16:21.818182 |
+| true | 3 days 20:56:49.187279 |
+
+
  It does look that on average, order length is shorter for repeat users. Maybe if all orders where delivered more quickly we could have more repeat users.
 
 # Week 1 answers
