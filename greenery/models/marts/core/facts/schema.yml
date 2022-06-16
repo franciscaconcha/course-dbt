@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: facts_users
+    description: "Expanded model of user facts"
+    columns:
+      - name: user_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: user_ltv_usd
+        description: "Total revenue generated from the user's orders"

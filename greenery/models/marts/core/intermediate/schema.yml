@@ -11,5 +11,3 @@ models:
           - not_null
       - name: user_ltv_usd
         description: "Total revenue generated from the user's orders"
-        tests:
-          - positive_values
