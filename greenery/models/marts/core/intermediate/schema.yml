@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: int_users_ltv
+    description: "Lifetime value of the users, defined as the revenue generated in their whole time in greenery"
+    columns:
+      - name: user_guid
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: user_ltv_usd
+        description: "Total revenue generated from the user's orders"
+        tests:
+          - positive_values
