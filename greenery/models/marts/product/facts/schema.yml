@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: facts_sessions
+    description: "Length of each session"
+    columns:
+      - name: session_guid
+        description: "Primary key. Id of the session."
+        tests:
+          - unique
+          - not_null
+      - name: session_start_at_utc
+        description: "Timestamp of the start of the session"
+      - name: session_end_at_utc
+        description: "Timestamp of the end of the session"
+      - name: session_length
+        description: "Length of the session"
+      - name: user_guid
+        description: "Id of the user generating the session"
+        tests:
+          - not_null
+      - name: has_order
+        description: "(Boolean) Was an order placed during this session"
+      - name: n_page_views
+        description: "Number of page views in the session"
