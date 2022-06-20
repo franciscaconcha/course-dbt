@@ -75,6 +75,18 @@ Result:
 
  It does look that on average, order length is shorter for repeat users. Maybe if all orders where delivered more quickly we could have more repeat users.
 
+ **Explain the marts models you added. Why did you organize the models in the way you did?**
+
+ It was not straightforward to define the marts models since I felt that a lot of data was overlapping between core, marketing, and product. In the end I tried to keep orders and users as core, since they can be used by the whole company. For marketing I focused on relating orders with users, so that we can filter both at the same time more easily and make decisions for marketing campaigns. For product, I decided to focus on sessions and page views, which gives us an idea of how the users are browsing the website.
+
+**What assumptions are you making about each model? (i.e. why are you adding each test?)**
+
+For all models I am assuming a unique, not null primary key. I am also assuming that value data is correct, for example that there are no negative values on costs.
+
+**Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**
+
+Not bad data per se but I found that order_guid is not a good primary key for stg_greenery__order_items, since an order can have more than one item. I defined a different primary key combining order and item ids.
+
 # Week 1 answers
 **How many users do we have?**
 
