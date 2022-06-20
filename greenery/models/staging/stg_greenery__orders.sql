@@ -21,7 +21,7 @@ WITH orders_source AS (
         , order_total AS order_total_usd
         , tracking_id
         , shipping_service
-        , estimated_delivery_at AS estimated_delivery_at_uct
+        , estimated_delivery_at AS estimated_delivery_at_utc
         , delivered_at AS delivered_at_utc
         , status AS order_status
     FROM orders_source

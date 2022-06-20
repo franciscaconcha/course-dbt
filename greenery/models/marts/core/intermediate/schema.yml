@@ -5,9 +5,20 @@ models:
     description: "Lifetime value of the users, defined as the revenue generated in their whole time in greenery"
     columns:
       - name: user_guid
-        description: "Primary key for this table"
+        description: "Primary key. Id of the user."
         tests:
           - unique
           - not_null
       - name: user_ltv_usd
         description: "Total revenue generated from the user's orders"
+
+  - name: int_order_lenght
+    description: "Total time between order placement and delivery"
+    columns: 
+      - name: order_guid
+        description: "Primary key. Id of the order."
+        tests:
+          - unique
+          - not_null
+      - name: order_length
+        description: "Time between order placement and delivery"

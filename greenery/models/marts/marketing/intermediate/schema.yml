@@ -1,18 +1,18 @@
 version: 2
 
 models:
-  - name: order_length
-    description: "Time difference between order creation and order delivery"
+  - name: int_number_of_orders_per_user
+    description: "Number of orders placed by each user"
     columns:
-      - name: order_guid
-        description: "Primary key for this table"
+      - name: user_guid
+        description: "Primary key. Id of the user."
         tests:
           - unique
           - not_null
-      - name: order_length
-        description: "Length of the order in days"
+      - name: n_orders
+        description: "Number of orders placed by the user"
 
-  - name: repeat_users
+  - name: int_repeat_users
     description: "To find users with more than one purchase"
     columns:
       - name: user_guid
