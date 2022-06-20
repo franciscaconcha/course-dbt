@@ -25,6 +25,8 @@ models:
         description: "Total cost of the order"
       - name: tracking_id
         description: "Tracking id"
+        tests:
+          - has_tracking_id
       - name: shipping_service
         description: "Shipping service used"
       - name: estimated_delivery_at_utc
@@ -63,3 +65,5 @@ models:
         description: "(Boolean) Has the user placed more than one order"
       - name: number_of_orders 
         description: "Total number of orders placed by the user"
+        tests:
+          - positive_values

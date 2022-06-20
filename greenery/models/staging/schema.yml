@@ -44,11 +44,13 @@ models:
   - name: stg_greenery__order_items
     description: "Information on items within an order"
     columns:
-      - name: order_guid
+      - name: order_item_guid
         description: "Primary key for this table"
         tests:
           - unique
           - not_null
+      - name: order_guid
+        description: "Id of the order"
       - name: product_guid
         description: "Id of the product"
       - name: quantity

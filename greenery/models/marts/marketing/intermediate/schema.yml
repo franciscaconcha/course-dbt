@@ -11,6 +11,8 @@ models:
           - not_null
       - name: n_orders
         description: "Number of orders placed by the user"
+        tests:
+          - positive_values
 
   - name: int_repeat_users
     description: "To find users with more than one purchase"

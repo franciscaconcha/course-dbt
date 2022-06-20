@@ -30,3 +30,5 @@ models:
           - not_null
       - name: n_page_views
         description: "Number of page views in the session"
+        tests:
+          - positive_values

@@ -11,6 +11,8 @@ models:
           - not_null
       - name: user_ltv_usd
         description: "Total revenue generated from the user's orders"
+        tests:
+          - positive_values
 
   - name: int_order_lenght
     description: "Total time between order placement and delivery"
@@ -22,3 +24,5 @@ models:
           - not_null
       - name: order_length
         description: "Time between order placement and delivery"
+        tests:
+          - positive_values

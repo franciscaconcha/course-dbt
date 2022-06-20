@@ -21,5 +21,7 @@ models:
           - not_null
       - name: has_order
         description: "(Boolean) Was an order placed during this session"
-      - name: n_page_views
+      - name: number_of_page_views
         description: "Number of page views in the session"
+        tests:
+          - positive_values
