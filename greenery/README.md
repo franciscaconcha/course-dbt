@@ -58,6 +58,12 @@ SELECT AVG(conversion_rate)
 FROM conversion_rate_per_product
 ```
 
+**Why might certain products be converting at higher/lower rates than others?**
+
+Popularity: some products might currently be on trend, and have a higher conversion rate right now. But conversion rate is not necessarily static :) 
+
+Some products might just be useful with every order. Since Greenery delivers houseplants, something like plant soil or a pot liner might be added to many orders, regardless of the plant in the order. Or with flowers: different flowers bouquets might all get a popular vase added to the order. A particular plant or bouquet might have a low conversion rate, but products associated with them that can be ordered along with other products would have a much higher conversion rate.
+
 # Week 2 answers
 **What is our user repeat rate?**
 
