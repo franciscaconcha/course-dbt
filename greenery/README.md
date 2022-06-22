@@ -1,3 +1,63 @@
+# Week 3 answers
+**What is our overall conversion rate?**
+
+The overall conversion rate is 0.62
+
+```
+WITH all_sessions AS (
+  -- All distinct session ids
+  SELECT DISTINCT session_guid
+  FROM dbt.dbt_fran_cr.facts_sessions
+), converted_sessions AS (
+  -- Distinct session ids only for sessions with an order
+  SELECT DISTINCT session_guid
+  FROM dbt.dbt_fran_cr.facts_sessions
+  WHERE has_order = 1
+)
+SELECT 
+  -- Conversion rate: N sessions with orders / N sessions
+  COUNT(c.session_guid)::FLOAT / COUNT(a.session_guid)
+FROM all_sessions AS a
+LEFT JOIN converted_sessions AS c 
+ON a.session_guid = c.session_guid
+```
+
+**What is our conversion rate by product?**
+
+The conversion rate per product is 0.46
+
+```
+WITH n_orders_per_product AS (
+  -- Number of times each product guid has been ordered
+  SELECT 
+    product_guid
+    , COUNT(*) AS n_orders
+  FROM dbt.dbt_fran_cr.stg_greenery__order_items
+  GROUP BY 1
+)
+, n_page_views_per_product AS (
+  -- Number of times each product guid page has been viewed
+  SELECT
+    product_guid
+    , COUNT(*) AS n_page_views
+  FROM dbt.dbt_fran_cr.stg_greenery__events
+  WHERE event_type = 'page_view'
+  GROUP BY 1
+)
+, conversion_rate_per_product AS (
+  -- Conversion rate per product guid
+  SELECT
+    p.product_guid
+    , (o.n_orders::float / p.n_page_views) AS conversion_rate
+  FROM n_page_views_per_product AS p 
+  LEFT JOIN n_orders_per_product AS o
+    ON p.product_guid = o.product_guid
+)
+-- Average product conversion rate
+SELECT AVG(conversion_rate)
+FROM conversion_rate_per_product
+```
+
 # Week 2 answers
 **What is our user repeat rate?**
 
