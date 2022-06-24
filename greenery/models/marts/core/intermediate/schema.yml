@@ -14,7 +14,7 @@ models:
         tests:
           - positive_values
 
-  - name: int_order_lenght
+  - name: int_order_length
     description: "Total time between order placement and delivery"
     columns: 
       - name: order_guid

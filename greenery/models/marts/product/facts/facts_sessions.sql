@@ -5,6 +5,10 @@
     )
 }}
 
+{%- set event_types = dbt_utils.get_column_values(
+    table=ref('stg_greenery__events'),
+    column='event_type'
+) -%}
 
 SELECT
   s.session_guid
@@ -13,7 +17,9 @@ SELECT
   , s.session_length
   , e.user_guid
   , MAX(CASE WHEN e.order_guid IS NOT NULL THEN 1 ELSE 0 END) AS has_order
-  , p.n_page_views AS number_of_page_views
+  {%- for event in event_types %}
+  , {{aggregate_events( event )}} AS n_{{event}}
+  {%- endfor -%}
 FROM {{ ref('int_session_length') }} AS s
 LEFT JOIN {{ ref('stg_greenery__events') }} AS e
   ON s.session_guid = e.session_guid
