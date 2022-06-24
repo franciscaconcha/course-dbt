@@ -19,10 +19,8 @@ SELECT
   , MAX(CASE WHEN e.order_guid IS NOT NULL THEN 1 ELSE 0 END) AS has_order
   {%- for event in event_types %}
   , {{aggregate_events( event )}} AS n_{{event}}
-  {%- endfor -%}
+  {%- endfor %}
 FROM {{ ref('int_session_length') }} AS s
 LEFT JOIN {{ ref('stg_greenery__events') }} AS e
   ON s.session_guid = e.session_guid
-LEFT JOIN {{ ref('int_session_page_views') }} AS p
-  ON s.session_guid = p.session_guid
-GROUP BY 1, 2, 3, 4, 5, 7
+GROUP BY 1, 2, 3, 4, 5

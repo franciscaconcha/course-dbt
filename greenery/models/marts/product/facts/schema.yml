@@ -21,7 +21,19 @@ models:
           - not_null
       - name: has_order
         description: "(Boolean) Was an order placed during this session"
-      - name: number_of_page_views
+      - name: n_page_view
         description: "Number of page views in the session"
+        tests:
+          - positive_values
+      - name: n_add_to_cart
+        description: "Number of 'add to cart' events in the session"
+        tests:
+          - positive_values
+      - name: n_checkout
+        description: "Number of checkout events in the session"
+        tests:
+          - positive_values
+      - name: n_package_shipped
+        description: "Number of shipping events in the session"
         tests:
           - positive_values
