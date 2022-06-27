@@ -24,7 +24,41 @@ ON a.session_guid = c.session_guid
 
 **What is our conversion rate by product?**
 
-The conversion rate per product is 0.46
+The average conversion rate per product is 0.46.
+The conversion rate for each product is as follows:
+
+| Product name | Conversion rate |
+| --- | --- |
+| Pothos | 0.32 |
+| Bamboo | 0.52 |
+| Philodendron | 0.47 |
+| Monstera | 0.51 |
+| String of pearls | 0.6 |
+| ZZ Plant | 0.52 |
+| Snake Plant | 0.39 |
+| Orchid | 0.45 |
+| Birds Nest Fern | 0.41 |
+| Calathea Makoyana | 0.51 |
+| Peace Lily | 0.40 |
+| Bird of Paradise | 0.45 |
+| Fiddle Leaf Fig | 0.47 |
+| Ficus | 0.42 |
+| Pilea Peperomioides | 0.46 |
+| Angel Wings Begonia | 0.38 |
+| Jade Plant | 0.47 |
+| Arrow Head | 0.54 |
+| Majesty Palm | 0.47 |
+| Spider Plant | 0.47 |
+| Money Tree | 0.46 |
+| Cactus | 0.54 |
+| Devil's Ivy | 0.48 |
+| Alocasia Polly | 0.38 |
+| Pink Anthurium | 0.41 |
+| Dragon Tree | 0.46 |
+| Aloe Vera | 0.49 |
+| Rubber Plant | 0.5 |
+| Ponytail Palm | 0.39 |
+| Boston Fern | 0.41 |
 
 ```
 WITH n_orders_per_product AS (
@@ -53,9 +87,14 @@ WITH n_orders_per_product AS (
   LEFT JOIN n_orders_per_product AS o
     ON p.product_guid = o.product_guid
 )
+-- Conversion rate per product
+SELECT p.product_name, cr.conversion_rate
+FROM conversion_rate_per_product AS cr
+LEFT JOIN dbt.dbt_fran_cr.stg_greenery__products AS p
+  ON cr.product_guid = p.product_guid
 -- Average product conversion rate
-SELECT AVG(conversion_rate)
-FROM conversion_rate_per_product
+-- SELECT AVG(conversion_rate)
+-- FROM conversion_rate_per_product
 ```
 
 **Why might certain products be converting at higher/lower rates than others?**

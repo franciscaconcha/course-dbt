@@ -24,16 +24,14 @@ SELECT
   , u.phone_number AS user_phone_number
   , u.created_at_utc AS user_created_at_utc
   , u.updated_at_utc AS user_updated_at_utc
-  , a.address AS delivery_address
+  , u.address AS delivery_address
   , o.order_length
   , ltv.user_ltv_usd
   , r.is_repeat_user
   , n.n_orders AS number_of_orders 
 FROM {{ ref('facts_orders') }} AS o
-LEFT JOIN {{ ref('stg_greenery__users') }} AS u
+LEFT JOIN {{ ref('facts_users') }} AS u
   ON o.user_guid = u.user_guid
-LEFT JOIN {{ ref('stg_greenery__addresses') }} AS a
-  ON u.address_guid = a.address_guid
 LEFT JOIN {{ ref('int_users_ltv') }} AS ltv
   ON u.user_guid = ltv.user_guid
 LEFT JOIN {{ ref('int_repeat_users') }} AS r
