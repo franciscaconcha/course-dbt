@@ -17,6 +17,7 @@ FROM snapshots.orders_snapshot
 WHERE order_id IN (SELECT * FROM changed_orders)
 ```
 **How are our users moving through the product funnel?**
+
 I calculated funnel labels at the session level. Out of 578 total sessions, the funnel distribution is as follows:
 
 | funnel_level | n_sessions | n_sessions_percent |
@@ -46,6 +47,7 @@ ORDER BY funnel_level DESC
 ```
 
 **Which steps in the funnel have largest drop off points?**
+
 Calculating the funnel labels at event level, we see the following behaviour:
 
 | funnel_level | n_events |
