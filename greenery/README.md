@@ -16,7 +16,55 @@ SELECT *
 FROM snapshots.orders_snapshot
 WHERE order_id IN (SELECT * FROM changed_orders)
 ```
+**How are our users moving through the product funnel?**
+I calculated funnel labels at the session level. Out of 578 total sessions, the funnel distribution is as follows:
 
+| funnel_level | n_sessions | n_sessions_percent |
+| --- | --- | --- |
+| upper | 111 | 19.20% |
+| mid | 106 | 18.33% |
+| lower | 361 | 62.45% |
+
+The way that I defined the funnel level makes each level exclusive. To better see the behaviour, we can look at the cumulative number of sessions per level:
+
+| funnel_level | total_n_sessions | total_n_sessions_percent |
+| --- | --- | --- |
+| upper | 578 | 100% |
+| mid | 467 | 80% |
+| lower | 361 | 62% | 
+
+We can see that 80% of the total sessions make it to the mid level, and 62% of sessions make it to the lower level.
+
+```
+SELECT
+  funnel_level
+  , COUNT(*) AS n_sessions
+  , (COUNT(*)::float/578) * 100 AS n_sessions_percent
+FROM dbt.dbt_fran_cr.facts_sessions
+GROUP BY 1
+ORDER BY funnel_level DESC
+```
+
+**Which steps in the funnel have largest drop off points?**
+Calculating the funnel labels at event level, we see the following behaviour:
+
+| funnel_level | n_events |
+| --- | --- |
+| upper | 1871 | 
+| mid | 986 | 
+| lower | 361 |
+
+This shows a 48% drop from upper to mid funnel level, and a 64% drop from mid to lower funnel level. The largest drop is then from mid to lower funnel level, or from "add to cart" to "checkout". We are losing many customers in this step!
+
+```
+SELECT
+  funnel_level
+  , COUNT(*)
+FROM dbt.dbt_fran_cr.dim_events
+WHERE funnel_level IS NOT NULL
+GROUP BY 1
+ORDER BY funnel_level desc
+```
 
 # Week 3 answers
 **What is our overall conversion rate?**
