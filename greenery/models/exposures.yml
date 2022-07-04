@@ -1,0 +1,14 @@
+version: 2
+
+exposures:  
+  - name: Funnel Label at Event and Session Level
+    description: >
+      Description of events and sessions including funnel level classification
+    type: dashboard
+    maturity: high
+    owner:
+      name: Francisca Concha-Ramirez
+      email: fran@greenery.com
+    depends_on:
+      - ref('dim_events')
+      - ref('facts_sessions')
