@@ -1,4 +1,22 @@
 # Week 4 answers
+**dbt Snapshots: how has the data changed?**
+
+After running the snapshots as indicated, we can see that orders with ids `914b8929-e04a-40f8-86ee-357f2be3a2a2` and `05202733-0e17-4726-97c2-0520c024ab85` changed their status from "preparing" to "shipped" :tada:
+
+```
+WITH changed_orders AS (
+  -- These are the order_ids of the orders which statuses' have changed
+  -- If a value for dbt_valid_to exists, it means the order has changed in the snapshot
+  SELECT order_id
+  FROM snapshots.orders_snapshot
+  WHERE dbt_valid_to IS NOT NULL
+)
+-- Now lets find all the info on the changed orders
+SELECT * 
+FROM snapshots.orders_snapshot
+WHERE order_id IN (SELECT * FROM changed_orders)
+```
+
 
 # Week 3 answers
 **What is our overall conversion rate?**
